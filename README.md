@@ -2,23 +2,26 @@
 
 - [Compile](#compile)
 - [How to use](#benchmark-usage)
-- [Visualize network](#visualizaiton-of-the-network)
-- [Evaluation](#visualizaiton-of-the-network)
+- [Visualize network](#visualization-of-the-network)
+- [Evaluation](#evaluation)
 
 ## Compile
 
-Install GCC 4.7 or newer version in the [link](https://sourceforge.net/projects/mingw-w64/files/). Execute the command ```make``` in the path of the Makefile to compile the code.
+Install GCC 4.7 or newer version from the [link](https://sourceforge.net/projects/mingw-w64/files/). Execute the command `make` in the path of the Makefile to compile the code.
 
-    make
+```bash
+make
+```
 
 ## Benchmark usage
 
 ```bash
 $ ./run 100 100 100 GWO $lifetime_idx $round_idx
 
--Executable_file  -Board_number -Sensor_number -Target_number -Initial_capacity -Iteration -AlgoName
+Usage:
+./run -Board_number -Sensor_number -Target_number -Initial_capacity -Iteration -AlgoName
 
-where:
+Parameters:
     -Executable_file    [required] ./run
     -Board_number       [required] 100
     -Sensor_number      [required] 100,200
@@ -28,28 +31,62 @@ where:
     -RoundIdx           [required] 1,2,3..30
 ```
 
-## Visualizaiton of the network
+## Visualization of the network
 
-1. Basestation position: corner
+### 1. Basestation position: corner
 
-    ring number = 4 | ring number = 6
-    --- | ---
-    ![GA_50_0.70_0.70_2.gif](./README_data/GA_50_0.70_0.70_2.gif) | ![GA_50_0.70_0.70_3.gif](./README_data/GA_50_0.70_0.70_3.gif)
+| Ring number = 4 | Ring number = 6 |
+| --- | --- |
+| ![GA_50_0.70_0.70_2.gif](./README_data/GA_50_0.70_0.70_2.gif) | ![GA_50_0.70_0.70_3.gif](./README_data/GA_50_0.70_0.70_3.gif) |
 
-2. Basestation position: center
+### 2. Basestation position: center
 
-    ring number = 4 | ring number = 6
-    --- | ---
-    ![GA_50_0.70_0.70_1.gif](./README_data/GA_50_0.70_0.70_1.gif) | ![GA_50_0.70_0.70_1.gif](./README_data/GA_50_0.70_0.70_1.gif)
+| Ring number = 4 | Ring number = 6 |
+| --- | --- |
+| ![GA_50_0.70_0.70_1.gif](./README_data/GA_50_0.70_0.70_1.gif) | ![GA_50_0.70_0.70_1.gif](./README_data/GA_50_0.70_0.70_1.gif) |
 
-## Metrics
+### 3. WSN lifetime iteration
 
-1. Lifetime Analysis: Each algorithm is initialized with the exact same starting points and is run 30 times for each dataset (100100100, 100200100, 100100400). A boxplot is then used to evaluate the performance of each algorithm based on the median lifetime, highlighting the optimizer's efficiency.
+## Visual Comparison of Network Behaviors
 
-2. Capacity Analysis: The median round index is selected to assess energy consumption as the iterations progress. The analysis focuses on observing the slope and intercept of the capacity curve, which reflects the algorithm's efficiency in managing energy over time.
+<div align="center">
 
-Lifetime analysis | Capacity analysis
----- | ----
-![100100100_boxplot.png](./README_data/100100100_boxplot.png) | ![100100100_capacity.png](./README_data/100100100_capacity.png)
-![100200100_boxplot.png](./README_data/100200100_boxplot.png) | ![100200100_capacity.png](./README_data/100200100_capacity.png)
-![100100400_boxplot.png](./README_data/100100400_boxplot.png) | ![100100400_capacity.png](./README_data/100100400_capacity.png)
+### Comprehensive Analysis
+![Comprehensive WSN Lifetime Analysis](./README_data/GWOCS2024_60_4_0.70_3_combo.gif)
+*Network performance with combined scheduling and routing optimization*
+
+</div>
+
+<table>
+  <tr>
+    <td width="50%" align="center"><b>Scheduling Optimization</b></td>
+    <td width="50%" align="center"><b>Routing Optimization</b></td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="./README_data/GWOCS2024_60_4_0.70_3_sch.gif" alt="Scheduling Optimization">
+      <br>
+      <!-- <em>Temporal node activation patterns</em> -->
+    </td>
+    <td align="center">
+      <img src="./README_data/GWOCS2024_60_4_0.70_3_rou.gif" alt="Routing Optimization">
+      <br>
+      <!-- <em>Spatial data flow configuration</em> -->
+    </td>
+  </tr>
+</table>
+
+
+## Evaluation
+
+### Metrics
+
+1. **Lifetime Analysis**: Each algorithm is initialized with the exact same starting points and is run 30 times for each dataset (100100100, 100200100, 100100400). A boxplot is then used to evaluate the performance of each algorithm based on the median lifetime, highlighting the optimizer's efficiency.
+
+2. **Capacity Analysis**: The median round index is selected to assess energy consumption as the iterations progress. The analysis focuses on observing the slope and intercept of the capacity curve, which reflects the algorithm's efficiency in managing energy over time.
+
+| Lifetime analysis | Capacity analysis |
+| --- | --- |
+| ![100100100_boxplot.png](./README_data/100100100_boxplot.png) | ![100100100_capacity.png](./README_data/100100100_capacity.png) |
+| ![100200100_boxplot.png](./README_data/100200100_boxplot.png) | ![100200100_capacity.png](./README_data/100200100_capacity.png) |
+| ![100100400_boxplot.png](./README_data/100100400_boxplot.png) | ![100100400_capacity.png](./README_data/100100400_capacity.png) |
